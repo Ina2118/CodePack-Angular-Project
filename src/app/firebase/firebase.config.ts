@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBZLIbRgJO7VF8k1Vx0qg0f_E2J5gMUeX8",
+  apiKey: "",
   authDomain: "codepack-angular-project.firebaseapp.com",
   projectId: "codepack-angular-project",
   storageBucket: "codepack-angular-project.firebasestorage.app",
