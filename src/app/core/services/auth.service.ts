@@ -1,31 +1,46 @@
 import { Injectable } from "@angular/core";
-import { Auth , createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut , authState} from "@angular/fire/auth";
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  authState,
+  User
+} from "@angular/fire/auth";
+
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { sendPasswordResetEmail } from "@angular/fire/auth";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-
 export class AuthService {
-    user$;
 
-    constructor(private auth: Auth) {
-        this.user$ = authState(this.auth);
-    }
+  user$: Observable<User | null>;
+  isLoggedIn$;
 
-    register(email: string, password: string) {
-        return createUserWithEmailAndPassword(this.auth, email, password);
-    }
+  constructor(private auth: Auth) {
+    this.user$ = authState(this.auth);
 
-    login(email: string, password: string) {
-        return signInWithEmailAndPassword(this.auth, email, password);
-    }
+    this.isLoggedIn$ = this.user$.pipe(
+      map(user => !!user)
+    );
+  }
 
-    logout(){
-        return signOut(this.auth);
+  register(email: string, password: string) {
+    return createUserWithEmailAndPassword(this.auth, email, password);
+  }
 
-    }
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.auth, email, password);
+  }
 
-    isLoggedIn(): boolean {
-        return !!this.auth.currentUser;
-    }
+  logout() {
+    return signOut(this.auth);
+  }
+
+  resetPassword(email: string) {
+  return sendPasswordResetEmail(this.auth, email);
+}
 }

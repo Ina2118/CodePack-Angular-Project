@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(/test2.jpg);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.register-card {
+  background: rgba(64, 64, 64, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(25px);
+  text-align: center;
+  color: white;
+  width: 400px;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  left: 85px;
+}
+
+.register-title {
+  font-size: 40px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+
+.register-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 12px;
+  border-radius: 99px;
+  outline: 3px solid transparent;
+  transition: 0.3s;
+  font-size: 17px;
+  color: rgb(7, 7, 7);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.register-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+}
+
+.register-input:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.password-rules {
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+.password-rules p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  margin: 2px 0;
+  font-size: 12px;
+  color: red;
+}
+
+.password-rules i {
+  font-size: 12px;
+}
+
+.password-rules p.valid {
+  color: green;
+}
+
+
+.register-btn {
+  width: 100%;
+  padding: 10px 0;
+  background: #A368DE;
+  border: none;
+  border-radius: 99px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: #d991f5;
+}
+
+
+.login-link {
+  margin-top: 15px;
+  font-size: 15px;
+  color:white;
+}
+
+.login-link a {
+  color: #5881E0;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  top: 35%;
+  transform: translateY(-50%);
+  color: #555;
+  font-size: 14px;
+}
+
+.input-group .register-input {
+  padding-left: 45px;
+}

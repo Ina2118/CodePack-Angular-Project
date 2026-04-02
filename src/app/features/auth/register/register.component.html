@@ -1,0 +1,59 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2 class="register-title">Create Account</h2>
+
+    <div class="input-group">
+      <i class="fa-solid fa-envelope"></i>
+      <input class="register-input" type="email" placeholder="Email" [(ngModel)]="email" />
+    </div>
+
+    <div class="input-group">
+      <i class="fa-solid fa-lock"></i>
+      <input class="register-input" type="password" placeholder="Password" [(ngModel)]="password" />
+    </div>
+
+    <div class="input-group">
+      <i class="fa-solid fa-lock"></i>
+      <input
+        class="register-input"
+        type="password"
+        placeholder="Confirm Password"
+        [(ngModel)]="confirmPassword"
+      />
+    </div>
+
+    <div class="password-rules">
+      <p [class.valid]="hasLowercase">
+        <i class="fa-solid" [ngClass]="hasLowercase ? 'fa-check' : 'fa-times'"></i>
+        lowercase letter
+      </p>
+
+      <p [class.valid]="hasUppercase">
+        <i class="fa-solid" [ngClass]="hasUppercase ? 'fa-check' : 'fa-times'"></i>
+        uppercase letter
+      </p>
+
+      <p [class.valid]="hasNumber">
+        <i class="fa-solid" [ngClass]="hasNumber ? 'fa-check' : 'fa-times'"></i>
+        number
+      </p>
+
+      <p [class.valid]="hasSpecial">
+        <i class="fa-solid" [ngClass]="hasSpecial ? 'fa-check' : 'fa-times'"></i>
+        special character (@$!%*?&)
+      </p>
+
+      <p [class.valid]="hasMinLength">
+        <i class="fa-solid" [ngClass]="hasMinLength ? 'fa-check' : 'fa-times'"></i>
+        minimum 8 characters
+      </p>
+    </div>
+
+    <button (click)="register()" class="register-btn">Register</button>
+
+    <p class="login-link">
+      Have already account?
+      <a routerLink="/login">Login here</a>
+    </p>
+  </div>
+</div>
