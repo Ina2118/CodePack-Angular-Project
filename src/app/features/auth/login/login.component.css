@@ -106,13 +106,13 @@ label {
 
 .remember-me a:hover {
   text-decoration: underline;
-  color: #5881e0;
+  color: #3BBFFA;
 }
 
 .login-btn {
   width: 100%;
   padding: 10px 0;
-  background: #a368de;
+  background: #7C3AED;
   border: none;
   border-radius: 99px;
   color: white;
@@ -123,7 +123,7 @@ label {
 }
 
 .login-btn:hover {
-  background: #d991f5;
+  background: #6b2dc1;
 }
 
 .register {
@@ -133,11 +133,22 @@ label {
 }
 
 .register a {
-  color: #5881e0;
+  color: #3BBFFA;
   text-decoration: none;
   font-weight: 500;
 }
 
 .register a:hover {
   text-decoration: underline;
+}
+
+
+.error {
+  color:#f43f5e;
+  margin-top: 10px;
+}
+
+.success {
+  color: #2dd4bf;
+  margin-top: 10px;
 }

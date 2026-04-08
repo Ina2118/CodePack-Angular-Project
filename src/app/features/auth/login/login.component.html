@@ -13,13 +13,14 @@
     </div>
     
     <div class="remember-me">
-      <label> <input type="checkbox" /> Remember me </label>
+      <label> <input type="checkbox" [(ngModel)]="rememberMe" /> Remember me </label>
       
       <a routerLink="/forgot-password" class="forgot"> <i class="fa-solid fa-key"></i> Forgot password? </a>
     </div>
     
     <button (click)="login()" class="login-btn">
       Login
+      <a routerLink="/profile"></a>
     </button>
     
     <p class="error" *ngIf="errorMessage">

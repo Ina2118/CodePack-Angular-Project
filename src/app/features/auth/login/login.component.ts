@@ -21,16 +21,28 @@ export class LoginComponent {
     private router: Router,
   ) {}
 
+  rememberMe: boolean = false;
+
   login() {
     this.errorMessage = '';
 
     this.auth
-      .login(this.email, this.password)
+      .login(this.email, this.password, this.rememberMe)
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/profile']);
       })
       .catch((error) => {
-        this.errorMessage = error?.message || 'Login failed';
+        const code = error?.code;
+
+        if (code === 'auth/wrong-password') {
+          this.errorMessage = 'Wrong Password';
+        } else if (code === 'auth/user-not-found') {
+          this.errorMessage = 'User not found';
+        } else if (code === 'auth/invalid-email') {
+          this.errorMessage = 'Invalid email';
+        } else {
+          this.errorMessage = 'Error occurred during login. Please try again.';
+        }
       });
   }
 }

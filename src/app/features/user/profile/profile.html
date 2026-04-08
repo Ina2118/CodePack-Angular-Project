@@ -1,0 +1,26 @@
+<div class="container" *ngIf="user$ | async as user">
+  <div class="card">
+
+    <h2 class="name">{{ user.name }}</h2>
+
+    <p class="role">{{ user.role }}</p>
+
+    <div class="team">
+      Pack: {{ user.team }}
+      <i class="fas fa-users"></i>
+    </div>
+
+    <button class="edit-btn" (click)="editMode = !editMode">
+      <i class="fas fa-pen"></i> Edit Profile
+    </button>
+
+    <div *ngIf="editMode" class="edit-form">
+      <input [(ngModel)]="user.name" placeholder="Name" />
+      <input [(ngModel)]="user.role" placeholder="Role" />
+      <input [(ngModel)]="user.team" placeholder="Team" />
+
+      <button (click)="updateProfile(user)">Save</button>
+    </div>
+
+  </div>
+</div>

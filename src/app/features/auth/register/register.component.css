@@ -72,23 +72,23 @@
   gap: 8px;
   text-align: left;
   margin: 2px 0;
-  font-size: 12px;
-  color: red;
+  font-size: 14px;
+  color: rgb(255, 55, 55);
 }
 
 .password-rules i {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .password-rules p.valid {
-  color: green;
+  color: rgb(24, 212, 24);
 }
 
 
 .register-btn {
   width: 100%;
   padding: 10px 0;
-  background: #A368DE;
+  background: #7C3AED;
   border: none;
   border-radius: 99px;
   color: white;
@@ -99,7 +99,7 @@
 }
 
 .register-btn:hover {
-  background: #d991f5;
+  background: #6b2dc1;
 }
 
 
@@ -110,7 +110,7 @@
 }
 
 .login-link a {
-  color: #5881E0;
+  color: #3BBFFA;
   text-decoration: none;
   font-weight: 500;
   margin-left: 5px;

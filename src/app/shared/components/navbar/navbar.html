@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<div class="navbar">
+  <div class="logo" routerLink="/">CodePack</div>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        
+      </a>
+    </li>
+
+    <li><a [routerLink]="['/']" fragment="features-container">Features</a></li>
+    <li><a [routerLink]="['/']" fragment="how-it-works-container">How it works</a></li>
+
+  </ul>
+
+  <!-- CTA -->
+  <div class="nav-buttons">
+    <a routerLink="/login" class="btn-login">Login</a>
+    <!-- <a routerLink="/register" class="btn-register">Get Started</a> -->
+  </div>
+</div>

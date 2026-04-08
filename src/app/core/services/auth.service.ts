@@ -5,12 +5,17 @@ import {
   signInWithEmailAndPassword,
   signOut,
   authState,
-  User
+  User,
+  browserLocalPersistence,
+  browserSessionPersistence,
+  setPersistence,
+  sendPasswordResetEmail
 } from "@angular/fire/auth";
 
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { sendPasswordResetEmail } from "@angular/fire/auth";
+import { Firestore, doc, docData } from "@angular/fire/firestore";
+import { Observable, of } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
+import { AppUser } from "../models/app-user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +23,24 @@ import { sendPasswordResetEmail } from "@angular/fire/auth";
 export class AuthService {
 
   user$: Observable<User | null>;
-  isLoggedIn$;
+  userProfile$: Observable<AppUser | null>;
+  isLoggedIn$: Observable<boolean>;
 
-  constructor(private auth: Auth) {
+  constructor(private auth: Auth, private firestore: Firestore) {
+
     this.user$ = authState(this.auth);
 
     this.isLoggedIn$ = this.user$.pipe(
       map(user => !!user)
+    );
+
+    this.userProfile$ = this.user$.pipe(
+      switchMap(user => {
+        if (!user) return of(null);
+
+        const ref = doc(this.firestore, `users/${user.uid}`);
+        return docData(ref) as Observable<AppUser>;
+      })
     );
   }
 
@@ -32,8 +48,13 @@ export class AuthService {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password);
+  login(email: string, password: string, rememberMe: boolean) {
+    const persistence = rememberMe
+      ? browserLocalPersistence
+      : browserSessionPersistence;
+
+    return setPersistence(this.auth, persistence)
+      .then(() => signInWithEmailAndPassword(this.auth, email, password));
   }
 
   logout() {
@@ -41,6 +62,6 @@ export class AuthService {
   }
 
   resetPassword(email: string) {
-  return sendPasswordResetEmail(this.auth, email);
-}
+    return sendPasswordResetEmail(this.auth, email);
+  }
 }

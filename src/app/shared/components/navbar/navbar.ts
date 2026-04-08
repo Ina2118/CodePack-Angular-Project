@@ -1,9 +1,19 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostBinding, HostListener } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  styleUrls: ['./navbar.css'],
 })
-export class Navbar {}
+export class Navbar {
+  @HostBinding('class.scrolled') scrolled = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.scrolled = window.pageYOffset > 20;
+  }
+}

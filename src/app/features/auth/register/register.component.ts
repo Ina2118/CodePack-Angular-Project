@@ -73,7 +73,7 @@ get hasMinLength() {
     this.auth
       .register(this.email, this.password)
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/profile']);
       })
       .catch((err) => {
         this.error = err.message;
