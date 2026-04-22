@@ -12,99 +12,135 @@ The platform allows developers to organize their workflow, collaborate efficient
 
 ---
 
-### 2. Main User Flows
+### 2.User Roles
 
-#### Public Flow (Guest Users)
-1. The user opens the application.
-2. Views public content (home page / forum).
-3. Can choose to:
-   - Register
-   - Log in
+#### Guest Users
+1.Can view public page (home page)
+2.Can register
+3.Can log in
 
-#### Authentication Flow
-1. The user registers using a form.
-2. Data is sent to Firebase Authentication.
-3. After successful login, access to the private section is granted.
-
-#### Private Flow (Authenticated Users)
-1. The user logs into the system.
-2. Accesses the dashboard.
-3. Creates or joins a team.
-4. Creates a “pack” (project).
-4. Manages tasks (roadmap).
-5. Uploads and views code snippets.
-6. Communicates with team members via chat.
-7. Views and edits their profile.
+#### Authenticated User
+1.Can create, edit, and delete tasks
+2.Can create and join teams
+3.Can communicate via chat
+4.Can view and edit their profile
 
 ---
 
-### 3. Core Features
+### 3. Public Features
 
-#### Authentication
-- User registration and login via Firebase
-- Route protection using guards (auth.guard, guest.guard)
-- Secure access to private routes
+The following features are accessible without authentication:
 
-#### Packs (Projects)
-- Create, edit, and delete packs
-- View pack details
+- **Home page** – available to all users. Visitors can explore the application, learn about its purpose, and understand its main functionalities.
+- **Login page** – allows existing users to sign in.
+- **Registration page** – allows new users to create an account.
 
-#### Teams
-- Create teams
-- Add and manage members
+Users who are not logged in can browse the home page to get familiar with the platform and decide whether they want to log in or register.
 
-#### Tasks / Roadmap
-- Create, edit, and delete tasks
-- Organize project workflow
+#### Authenticated User Features
 
-#### Code Snippets
-- Upload and share code
-- View snippet collections
+After logging in, users gain access to the full functionality of the application:
 
-#### Chat System
-- Real-time messaging between team members
-- Powered by Firebase
-
-#### User Profile
-- View and manage personal profile information
+- Create new tasks
+- Edit and manage their own tasks
+- Delete their own tasks
+- Create and manage packs (projects)
+- Create and join teams
+- Upload and view code snippets
+- Communicate with other users through a real-time chat system
+- View and edit their user profile
 
 ---
 
-### 4. User Interaction
+### 4. Main Application Flow
 
-Users interact with the application through:
+1. The user opens the application and browses the home page.
+2. The user registers or logs into their account.
+3. After authentication, the user accesses the dashboard.
+4. The user creates or joins a team.
+5. The user creates a profile and adds tasks.
+6. The user tracks and manages their tasks.
+7. The user communicates with team members through the chat system.
 
-- Navigation bar (navbar)
-- Forms (login, register, create/edit)
-- Action buttons (create, edit, delete)
-- Dynamic lists (packs, tasks, snippets)
-- Chat interface
+### 5. Data Structure
 
-The application is built as an SPA, enabling smooth navigation without page reloads.
+The application uses several main data collections stored in Firebase.
+
+#### User Object
+- email (string) – e.g. "nikola.stoyanov@example.com"
+- name (string) – e.g. "Nikola Stoqnov"
+- role (string) – e.g. "Fullstack Developer"
+- team (string) – e.g. "Wizards"
+
+#### Task Object
+
+- createdAt (timestamp) – date and time when the task was created (e.g. April 21, 2026 at 12:07:45 PM UTC+3)
+- dueDate (string) – deadline for the task (e.g. "2026-04-21")
+- status (string) – current state of the task (e.g. "in-progress")
+- title (string) – task title (e.g. "т")
+- userId (string) – ID of the user who created or owns the task
+
+#### Chat Message Object
+
+- text (string) – the content of the message (e.g. "Hi")
+- timestamp (timestamp) – date and time when the message was sent (e.g. April 20, 2026 at 4:46:27 PM UTC+3)
+- user (string) – email of the user who sent the message (e.g. "ivan.petrov@example.com")
 
 ---
 
-### 5. System Architecture
+### 6. Project Architecture
+### Application structure (src/app)
+#### core/
+Global application logic:
 
-The application follows a modular structure:
+- guards/ – route protection (e.g. auth-guard, profile.guard)
+- models/ – data models (e.g. app-user.model)
+- services/ – core services (auth, chat, task, user services)
 
-- **Core** – global services, guards, and interceptors
-- **Shared** – reusable components and pipes
-- **Features** – main application functionalities
-- **Firebase** – backend services (Authentication, Firestore, Storage)
+#### features/
+Main application features:
 
+- auth/
+  - login/
+  - register/
+  - forgot-password/
+
+- chat/ – chat functionality
+- home/ – home page
+- task/ – task management
+- user/
+  - profile/ – user profile
+ 
+#### firebase/
+- firebase.config.ts – Firebase configuration
+
+#### layouts/
+Application layouts:
+
+- main-layout/
+- private-layout/
+
+#### shared/
+Reusable UI elements:
+
+- components/
+  - navbar/
+  - footer/
+  - private-navbar/
+ 
 ---
 
-### 6. Technologies Used
+### 7. Technologies Used
 
 - Angular
-- Firebase (Authentication, Firestore, Storage)
 - TypeScript
+- Firebase (Authentication, Firestore, Storage)
+- RxJS
 - HTML & CSS
 
 ---
 
-### 7. How to Run the Project
+### 8.How to Run the Project
 
 ```bash
 # Clone the repository
