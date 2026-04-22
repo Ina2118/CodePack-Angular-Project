@@ -15,15 +15,15 @@ The platform allows developers to organize their workflow, collaborate efficient
 ### 2.User Roles
 
 #### Guest Users
-1.Can view public page (home page)
-2.Can register
-3.Can log in
+1. Can view public page (home page)
+2. Can register
+3. Can log in
 
 #### Authenticated User
-1.Can create, edit, and delete tasks
-2.Can create and join teams
-3.Can communicate via chat
-4.Can view and edit their profile
+1. Can create, edit, and delete tasks
+2. Can create and join teams
+3. Can communicate via chat
+4. Can view and edit their profile
 
 ---
 
